@@ -1,14 +1,20 @@
 <%- include("partials/header.ejs") %>
 
-
-<table>
-    <% const coinsData = JSON.parse(content);%>
-    <% coinsData.forEach(coin => { %>
-    <tr>
-        <td><%= coin.name %></td>
-    </tr>
-    <% }); %>
-</table>
-<%= content %>
+<form action="/convert" method="post">
+    <label for="">Enter amount</label>
+    <input type="text" name="amount" id="amount">
+    <label for="coin">Select coin</label>
+    <select name="coin" id="coin">
+        <% coins.forEach(coin => { %>
+            <option value="<%= `${coin.id}` %>"><img src="<%= `${coin.image}` %>" alt=""> <%= coin.name %> <p> <%= coin.symbol %> </p></option>
+        <% }); %>
+    </select>
+    <label for="exchange">Select currency</label>
+    <select name="exchange" id="exchange">
+        <% for (let rateKey in rates.rates) { %>
+            <option value="<%= rates.rates[rateKey].unit %>"><%= rates.rates[rateKey].name %></option>
+          <% } %>
+    </select>
+</form>
 
 <%- include("partials/footer.ejs") %>
