@@ -1,0 +1,14 @@
+<%- include("partials/header.ejs") %>
+
+
+<table>
+    <% const coinsData = JSON.parse(content);%>
+    <% coinsData.forEach(coin => { %>
+    <tr>
+        <td><%= coin.name %></td>
+    </tr>
+    <% }); %>
+</table>
+<%= content %>
+
+<%- include("partials/footer.ejs") %>
