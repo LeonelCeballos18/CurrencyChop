@@ -3,7 +3,98 @@ body{
     margin: 0;
 }
 
+.dashboard{
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    width: 85%;
+    background-color: #F7F7F7;
+    height: 300px;
+}
+
+.container-dashboard{
+    padding: 2rem;
+}
+
+.exchange-container{
+    width: 50%;
+}
+
+.symbol{
+    color: #CACACA;
+}
+
+.coin-container .coin{
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 10rem;
+}
+
+.exchange select{
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 10rem;
+}
+
 table tr{
     border-top: 1px solid #E6E6E6;
     padding: 2rem !important;
 }
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+  }
+
+  .custom-select-trigger {
+    width: 18rem;
+    display: flex;
+    align-items: center;
+    padding: 5px 8px 5px 8px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .custom-options {
+    width: 18rem;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 22%;
+    right: 0;
+    transform: translateY(-10px);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    max-height: 18rem;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 5px;
+  }
+
+  .custom-options li {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .custom-options li img{
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+  }
+
+  .custom-options li:hover {
+    background-color: #f2f2f2;
+  }

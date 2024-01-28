@@ -16,4 +16,8 @@ app.get("/", async function(req, res){
     res.render("index.ejs", { coins: coins.data, rates: exchangeRates.data});
 })
 
+app.post("/exchange", async function(req, res){
+    
+})
+
 app.listen(port);
