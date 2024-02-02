@@ -6,8 +6,11 @@ $(document).ready(function() {
   
   // Option selection
   $(".custom-options li").click(function() {
-    var selectedOption = $(this).text();
-    updateTriggerText($(this).closest(".custom-select"), selectedOption);
+    let selectedOptionText = $(this).text();
+    let selectedCoin = $(this).data("coin-id");
+    let selectedExchange = $(this).data("exchange-id");
+    updateConverter(selectedCoin, selectedExchange)
+    updateTriggerText($(this).closest(".custom-select"), selectedOptionText);
   });
   
   // Manage clicks outside of the area
@@ -17,7 +20,7 @@ $(document).ready(function() {
     }
   });
   
-  function toggleOptions(trigger) {
+  function toggleOptions(trigger) { //The options are hidden if the user opens other options
     let coinOptions = $("#custom-select-coin").next(".custom-options");
     let exchangeOptions = $("#custom-select-exchange").next(".custom-options");
 
@@ -32,15 +35,14 @@ $(document).ready(function() {
     let options = trigger.next(".custom-options");
     options.toggle();
   }
-  
-  function updateTriggerText(select, text) {
-    var trigger = select.find(".custom-select-trigger");
+
+  function updateTriggerText(select, text) { //The trigger text is update
+    let trigger = select.find(".custom-select-trigger");
     trigger.text(text);
-    trigger.val(text.val);
     hideOptions(select);
   }
   
-  function hideOptions(select) {
+  function hideOptions(select) { //Function to hide all the options
     var options = select.find(".custom-options");
     options.hide();
   }
@@ -57,9 +59,15 @@ $(document).ready(function() {
     })
     .on("input", function() {
       console.log(2);
-      const selectedCoin = $('#custom-select-exchange').val();
-
-
-
     });
+
+    function updateConverter(coin, exchange){
+      /*const ApiUrl = "https://api.coingecko.com/api/v3"
+      const apiKey = "x_cg_demo_api_key=CG-F1TnaAfdS3FyGboUQ4kEsnTt";
+      $.post(ApiUrl + `/coins/${valueCoin}?tickers=false&market_data=true&` + apiKey, function(data){
+
+      });*/
+      console.log(coin);
+      console.log(exchange)
+    }
   });

@@ -9,15 +9,16 @@
             <div class="exchange-container">
                 <div class="coin-container">
                     <label for="amount">Enter amount: </label>
-                    <input type="text" class="coin" name="amount" id="amount" placeholder="1.00" value="1.00">
+                    <input type="text" class="coin" name="amount" id="amount" placeholder="1" value="1">
+                    <input type="text" name="slc" id="slc" style="display: none;">
                     <div class="custom-select" id="custom-select">
                         <p class="d-inline-block">Select coin: </p>
                         <div class="custom-select-trigger d-inline-block" name="slc" id="custom-select-exchange">
-                            Select coin
+                            <%= dfc.name %>
                         </div>
                         <ul class="custom-options co-c">
                             <% coins.forEach(coin => { %>
-                                <li value="<%= `${coin.id}` %>"><img src="<%= `${coin.image}` %>" alt=""> <p class="d-inline-block"><%= coin.name %></p> <p class="symbol d-inline-block"> (<%= coin.symbol %>) </p></li>
+                                <li data-coin-id="<%= coin.id %>" id="li-coin"><img src="<%= `${coin.image}` %>" alt=""> <p class="d-inline-block"><%= coin.name %></p> <p class="symbol d-inline-block"> (<%= coin.symbol %>) </p></li>
                             <% }); %>
                         </ul>
                     </div>
@@ -27,19 +28,19 @@
                     <div class="custom-select" id="custom-select">
                         <p class="d-inline-block">Select currency: </p>
                         <div class="custom-select-trigger d-inline-block" name="slex" id="custom-select-coin">
-                            Select currency
+                            <%= dfr.name %>
                         </div>
                         <ul class="custom-options co-ex">
                             <% for (let rateKey in rates.rates) { %>
-                                <li value="<%= rates.rates[rateKey].unit %>"><p class="d-inline-block"><%= rates.rates[rateKey].name %></p><p class="d-inline-block">(<%= rates.rates[rateKey].unit %>)</p></li>
+                                <li data-exchange-id="<%= rates.rates[rateKey].unit %>" id="li-exchange"><p class="d-inline-block"><%= rates.rates[rateKey].name %></p><p class="d-inline-block">(<%= rates.rates[rateKey].unit %>)</p></li>
                             <% } %>
                         </ul>
                     </div>
                 </div>
                 <br>
                 <div class="exchange-result">
-                    <h2><img src="img/logo.png" width="50px" height="50px" alt=""> 3.0000 ETC = 21333.UDS</h2>
-                    <p>last update 3434</p>
+                    <h2><img src="<%= dfc.image %>" width="50px" height="50px" alt=""> 1 <%= dfc.symbol %> = <%= dfc.current_price %> UDS</h2>
+                    <p>Last update: <%= dfc.last_updated %></p>
                 </div>
             </div>
         </form>
