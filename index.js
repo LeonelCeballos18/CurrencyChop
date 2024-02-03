@@ -28,7 +28,7 @@ app.get("/", async function(req, res){
     function getRateByName(name) { //It gotten the default exchange rate to show in the view
         defaultRate = rates[name];
     }
-    getRateByName("usd");
+    getRateByName("btc");
 
     res.render("index.ejs", { coins: coins.data, rates: exchangeRates.data, dfc: defaultCoin, dfr: defaultRate});
 })

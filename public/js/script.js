@@ -61,13 +61,22 @@ $(document).ready(function() {
       console.log(2);
     });
 
+    let coinValue;
+    let exchangeValue;
     function updateConverter(coin, exchange){
-      /*const ApiUrl = "https://api.coingecko.com/api/v3"
-      const apiKey = "x_cg_demo_api_key=CG-F1TnaAfdS3FyGboUQ4kEsnTt";
-      $.post(ApiUrl + `/coins/${valueCoin}?tickers=false&market_data=true&` + apiKey, function(data){
-
-      });*/
-      console.log(coin);
-      console.log(exchange)
+      if(coin === undefined){
+        coin = $("#li-coin").data("coin-id");
+        exchangeValue = exchange;
+      }else{
+        exchange = $("#li-exchange").data("exchange-id");
+        coinValue = coin;
+      }
+      if(coinValue === undefined){
+        coinValue = $("#li-coin").data("coin-id");
+      }else if(exchangeValue === undefined){
+        exchangeValue = $("#li-exchange").data("exchange-id");
+      }
+      console.log(coinValue);
+      console.log(exchangeValue);
     }
   });
