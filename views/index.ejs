@@ -32,15 +32,18 @@
                         </div>
                         <ul class="custom-options co-ex">
                             <% for (let rateKey in rates.rates) { %>
-                                <li data-exchange-id="<%= rates.rates[rateKey].unit %>" id="li-exchange"><p class="d-inline-block"><%= rates.rates[rateKey].name %></p><p class="d-inline-block">(<%= rates.rates[rateKey].unit %>)</p></li>
+                                <li data-exchange-id="<%= rateKey %>" id="li-exchange"><p class="d-inline-block"><%= rates.rates[rateKey].name %></p> <p class="d-inline-block" id="exchange_symbol"> (<%= rateKey %>)</p></li>
                             <% } %>
                         </ul>
                     </div>
                 </div>
                 <br>
                 <div class="exchange-result">
-                    <h2><img src="<%= dfc.image %>" width="50px" height="50px" alt=""> 1 <%= dfc.symbol %> = 1 <%= dfc.symbol %> </h2>
-                    <p>Last update: <%= dfc.last_updated %></p>
+                    <div class="data">
+                        <img src="<%= dfc.image %>" alt="" id="img-coin"  class="d-inline-block">
+                        <h2 id="dashboard-info" class="d-inline-block"> 1 <%= dfc.symbol %> = 1 <%= dfc.symbol %> </h2>
+                    </div>
+                    <p id="last-update">Last update: <%= dfc.last_updated %></p>
                 </div>
             </div>
         </form>

@@ -3,7 +3,13 @@ $(document).ready(function() {
     event.stopPropagation(); //prevents propagation of the same event from being called.
     toggleOptions($(this));
   });
+
   
+  let coinValue;
+  let exchangeValue;
+  if ($("#amount").val() != false) {
+    updateConverter(coinValue, exchangeValue);
+ }
   // Option selection
   $(".custom-options li").click(function() {
     let selectedOptionText = $(this).text();
@@ -58,16 +64,19 @@ $(document).ready(function() {
       e.preventDefault();
     })
     .on("input", function() {
-      console.log(2);
+      if ($("#amount").val() != false) {
+        updateConverter(coinValue, exchangeValue);
+        $(".exchange-result").show();
+     }else{
+      $(".exchange-result").hide();
+     }
     });
 
-    let coinValue;
-    let exchangeValue;
     function updateConverter(coin, exchange){
       if(coin === undefined){
         coin = $("#li-coin").data("coin-id");
         exchangeValue = exchange;
-      }else{
+      }else if(exchange === undefined){
         exchange = $("#li-exchange").data("exchange-id");
         coinValue = coin;
       }
@@ -77,6 +86,13 @@ $(document).ready(function() {
         exchangeValue = $("#li-exchange").data("exchange-id");
       }
       console.log(coinValue);
-      console.log(exchangeValue);
+      console.log(exchangeValue); //Global is the answer
+      const ApiUrl = "https://api.coingecko.com/api/v3"
+      const apiKey = "x_cg_demo_api_key=CG-F1TnaAfdS3FyGboUQ4kEsnTt";
+      $.get(ApiUrl + `/coins/markets?vs_currency=${exchangeValue}&ids=${coinValue}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en&` + apiKey, function(data){
+        $("#dashboard-info").text(`${$("#amount").val()} ${data[0].name} = ${data[0].current_price * $("#amount").val()} ${exchangeValue}`);
+        $("#img-coin").attr('src', `${data[0].image}`);
+        $("#last-update").text(`Last update: ${data[0].last_updated}`);
+      });
     }
   });
