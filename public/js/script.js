@@ -85,8 +85,6 @@ $(document).ready(function() {
       }else if(exchangeValue === undefined){
         exchangeValue = $("#li-exchange").data("exchange-id");
       }
-      console.log(coinValue);
-      console.log(exchangeValue); //Global is the answer
       const ApiUrl = "https://api.coingecko.com/api/v3"
       const apiKey = "x_cg_demo_api_key=CG-F1TnaAfdS3FyGboUQ4kEsnTt";
       $.get(ApiUrl + `/coins/markets?vs_currency=${exchangeValue}&ids=${coinValue}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en&` + apiKey, function(data){
